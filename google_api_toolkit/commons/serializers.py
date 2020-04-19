@@ -11,11 +11,12 @@ from typing import (
     Union,
 )
 
+from pydantic import BaseModel
 from typing_extensions import Protocol
 
-from .types import AbstractSetIntStr, DictIntStrAny
+from .types import AbstractSetIntStr, MappingIntStrAny
 
-T = TypeVar("T")
+T = TypeVar("T", bound=BaseModel)
 U = TypeVar("U")
 
 
@@ -49,17 +50,17 @@ class BaseSerializer(SerializerProtocol[T]):
     # Do include fields with a `None` value.
     dump_null: bool = False
     # The fields to include during serialization.
-    include: Optional[Union[AbstractSetIntStr, DictIntStrAny]] = None
+    include: Optional[Union[AbstractSetIntStr, MappingIntStrAny]] = None
     # Fields to be excluded from serialization.
-    exclude: Optional[Union[AbstractSetIntStr, DictIntStrAny]] = None
+    exclude: Optional[Union[AbstractSetIntStr, MappingIntStrAny]] = None
 
     def __init__(
         self,
         *,
         model: Type[T],
         dump_null: Optional[bool] = None,
-        include: Optional[Union[AbstractSetIntStr, DictIntStrAny]] = None,
-        exclude: Optional[Union[AbstractSetIntStr, DictIntStrAny]] = None,
+        include: Optional[Union[AbstractSetIntStr, MappingIntStrAny]] = None,
+        exclude: Optional[Union[AbstractSetIntStr, MappingIntStrAny]] = None,
     ):
         self.model = model
         self.dump_null = dump_null if dump_null is not None else self.dump_null
@@ -90,8 +91,8 @@ class BaseSerializer(SerializerProtocol[T]):
         obj: T,
         *,
         dump_null: Optional[bool] = None,
-        include: Optional[Union[AbstractSetIntStr, DictIntStrAny]] = None,
-        exclude: Union[AbstractSetIntStr, DictIntStrAny] = None,
+        include: Optional[Union[AbstractSetIntStr, MappingIntStrAny]] = None,
+        exclude: Union[AbstractSetIntStr, MappingIntStrAny] = None,
         by_alias: bool = True,
         **kwargs,
     ) -> Dict[str, Any]:
@@ -120,8 +121,8 @@ class BaseSerializer(SerializerProtocol[T]):
         obj: T,
         *,
         dump_null: bool = None,
-        include: Union[AbstractSetIntStr, DictIntStrAny] = None,
-        exclude: Union[AbstractSetIntStr, DictIntStrAny] = None,
+        include: Union[AbstractSetIntStr, MappingIntStrAny] = None,
+        exclude: Union[AbstractSetIntStr, MappingIntStrAny] = None,
         by_alias: bool = True,
         encoder: Optional[Callable[[Any], Any]] = None,
         **kwargs,
