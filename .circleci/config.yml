@@ -1,0 +1,28 @@
+# Python CircleCI 2.0 configuration file
+version: 2
+jobs:
+  build:
+    docker:
+      - image: circleci/python:3.7
+
+    working_directory: ~/repo
+
+    steps:
+      - checkout
+      - run:
+          name: install dependencies
+          command: |
+            sudo python3 -m pip install pipenv
+            pipenv install -d
+      - run:
+          name: run lint
+          command: |
+            pipenv run make lint
+      - run:
+          name: run mypy
+          command: |
+            pipenv run make mypy
+      - run:
+          name: run tests
+          command: |
+            pipenv run make test
