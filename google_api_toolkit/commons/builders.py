@@ -1,8 +1,6 @@
 from abc import ABC, abstractmethod
 from typing import Any, Generic, Iterable, Mapping, Optional, Tuple, TypeVar
 
-import googleapiclient.discovery
-
 from .http import HttpRequest
 from .pages import ResourceIterator, ResourcePage
 from .serializers import SerializerProtocol
@@ -14,7 +12,7 @@ T = TypeVar("T")
 class RequestBuilder(Generic[T], ABC):
     def __init__(
         self,
-        service: googleapiclient.discovery.Resource,
+        service: Any,
         *,
         serializer: SerializerProtocol[T],
         pagination: int = None,
