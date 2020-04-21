@@ -1,0 +1,20 @@
+[[source]]
+url = "https://pypi.org/simple"
+verify_ssl = true
+name = "pypi"
+
+[packages]
+typing_extensions = "*"
+pydantic = "==1.5"
+google-api-python-client = "==1.7.11"
+
+
+[dev-packages]
+pytest = "*"
+mypy = "*"
+"isort[requirements,pipfile]" = "*"
+flake8 = "*"
+black = "~=19.0"
+
+[pipenv]
+allow_prereleases = true
