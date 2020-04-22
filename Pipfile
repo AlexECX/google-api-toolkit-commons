@@ -14,7 +14,7 @@ pytest = "*"
 mypy = "*"
 "isort[requirements,pipfile]" = "*"
 flake8 = "*"
-black = "~=19.0"
+black = "==19.10b0"
 
 [pipenv]
 allow_prereleases = true
