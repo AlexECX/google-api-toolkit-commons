@@ -5,7 +5,7 @@ with open("README.md", "r") as fh:
 
 setup(
     name="google-api-toolkit-commons",
-    version="0.2.7",
+    version="0.3.0",
     author="Alexandre Cox",
     author_email="developpeur@phytochemia.com",
     description="Common assets for the google-api-toolkit package",
