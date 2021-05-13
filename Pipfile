@@ -5,7 +5,7 @@ name = "pypi"
 
 [packages]
 typing_extensions = "*"
-pydantic = "==1.5"
+pydantic = "==1.6.2"
 google-api-python-client = "==1.7.11"
 
 
